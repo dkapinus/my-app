@@ -1,0 +1,18 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+    text-decoration: none;
+  
+}
+
+.img{
+    width: 100px; 
+    height: 100px; 
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.message {
+    padding-left: 50px;
+}
