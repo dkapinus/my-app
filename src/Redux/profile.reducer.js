@@ -3,6 +3,7 @@ import { profileAPI } from '../API/api';
  const ADD_POST = 'ADD-POST';
  const SET_USER_PROFILE = 'SET_USER_PROFILE';
  const SET_STATUS = 'SET_STATUS';
+ const DELETE_POST = 'DELETE_POST'
  const IMAGE = 'IMAGE';
  
 
@@ -56,6 +57,13 @@ import { profileAPI } from '../API/api';
           status:action.status
         }; }
 
+        case DELETE_POST:{
+            return {
+                ...state, posts: state.posts.filter(p=> p.id !==action.postId)}
+
+            
+        }
+
         case IMAGE: {
             return {
               ...state,
@@ -79,6 +87,9 @@ export const setStatus = (status)=> {
     return { type: 'SET_STATUS',status}
 }    
 
+export const deletePost= (postId)=> {
+    return { type: 'DELETE_POST',postId}
+}  
 export const Image = (image)=> {
     return { type: 'IMAGE',image}
 }  
