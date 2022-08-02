@@ -98,22 +98,15 @@ export default profileReducer;
 
 
 
-export const ProfileThunkCreator = (userId) => {
-    return (dispatch) => {
-        profileAPI.profile(userId )
-        .then(data => {
+export const ProfileThunkCreator = (userId) => async (dispatch) => {
+        let data = await  profileAPI.profile(userId )
         dispatch(setUserProfile(data));
-       
-       });
-    }}
+    }
 
-    export const statusThunkCreator = (userId) => {
-        return (dispatch) => {
-    profileAPI.status(userId)
-    .then(data => {
+    export const statusThunkCreator = (userId) => async (dispatch) => {
+        let data = await profileAPI.status(userId)
         dispatch(setStatus(data))
-    });
-}}
+}
 
 export const updateStatusCreator = (status) =>(dispatch) => {
 

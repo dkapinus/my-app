@@ -109,18 +109,19 @@ export const  setIsFetchings = (isFetchings) =>  ({type:'TOGGLE_IS_FETCHING',isF
 
 export const toggleFollowingInProgress = (isFetchings,userId) => ({type:'TOGGLE_IS_FOLLOWING_PROGRESS',isFetchings,userId});
 
-export const getUsersThunkCreator= ( pageSize, currentPage) => { 
-  return (dispatch) => {
+export const getUsersThunkCreator= ( page,pageSize, ) => 
+  async (dispatch) => {
 dispatch(setIsFetchings(true));
+dispatch(setCurrentPage(page))
 
-userAPI.getUsers( pageSize, ).then(data => {
+let data = await userAPI.getUsers(page, pageSize, )
      dispatch(setIsFetchings(false));
      dispatch(setUsers(data.items));
      dispatch(setTotalUsersCount(data.totalCount));
      
- });
-}
-}
+ }
+
+
 
 export const unFollowThunkCreator = (userId) => {
    return (dispatch) => {
