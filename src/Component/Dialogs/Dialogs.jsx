@@ -35,7 +35,7 @@ import { maxLengthCreator } from '../../ utils/validators/validators';
        return (
     
           <div className={s.dialogs}>
-             <div className={s.dialogItem}>
+             <div >
                 {dialogsElements}
     
              </div>

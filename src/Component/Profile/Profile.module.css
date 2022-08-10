@@ -3,11 +3,14 @@
 
   .content img {
     width: 1000px;
-    height: 200px;
+    height: 180px;
+    border-radius: 5px;
   }
   
   .content {
     color:rgb(22, 19, 21);
+    width: 1000px;
+    height: 200px;
   }
 .item {
 color: blue;

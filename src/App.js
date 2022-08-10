@@ -1,8 +1,7 @@
-import React from 'react';
-import {  Route, withRouter} from 'react-router-dom';
+import React, { Suspense } from 'react';
+import {  BrowserRouter, Route, withRouter} from 'react-router-dom';
 import  './App.css';
 import Nav from './Component/Nav/Nav';
-import DialogsContainer from './Component/Dialogs/DialogsContainer';
 import UsersContainer from './Component/Users/UsersContainer';
 import ProfileContainer from './Component/Profile/ProfileContainer';
 import HeaderContainer from './Component/Header/HeaderContainer';
@@ -11,6 +10,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './Redux/app-reducer';
 import Preloader from './common/Preloader/Preloader';
+import store from './Redux/redux-store';
+import { Provider } from 'react-redux';
+// import DialogsContainer from './Component/Dialogs/DialogsContainer';
+const DialogsContainer = React.lazy(() => import('./Component/Dialogs/DialogsContainer'));
+
 
 
 
@@ -38,7 +42,11 @@ import Preloader from './common/Preloader/Preloader';
           <Nav  />
         <div className='app-wrapper-content'>
         <Route path='/dialogs'
-                           render={() => <DialogsContainer /> }/>
+                           render={() =>  <Suspense fallback={<div><Preloader/></div>}>
+                                         < DialogsContainer/>
+                                          </Suspense>
+                                   
+                                  }/>
 
                     
                     <Route path='/profile/:userId?'
@@ -64,10 +72,16 @@ import Preloader from './common/Preloader/Preloader';
 
 
        
-export  default compose ( withRouter,
+let AppContainer = compose ( withRouter,
         connect (mapStateToProps, { initializeApp})) (App);
        
 
-      
+    const  SamuraiJSApp = (props)=> {
+       return <BrowserRouter>
+       <Provider store={store}>
+         <AppContainer/>
+            </Provider>
+       </BrowserRouter>
+      }
        
-
+      export default    SamuraiJSApp
