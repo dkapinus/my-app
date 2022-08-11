@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import {  BrowserRouter, Route, withRouter} from 'react-router-dom';
+import {  HashRouter, Route, withRouter} from 'react-router-dom';
 import  './App.css';
 import Nav from './Component/Nav/Nav';
 import UsersContainer from './Component/Users/UsersContainer';
@@ -77,11 +77,11 @@ let AppContainer = compose ( withRouter,
        
 
     const  SamuraiJSApp = (props)=> {
-       return <BrowserRouter>
+       return <HashRouter basename={process.env.PUBLIC_URL}>
        <Provider store={store}>
          <AppContainer/>
             </Provider>
-       </BrowserRouter>
+       </HashRouter>
       }
        
       export default    SamuraiJSApp
