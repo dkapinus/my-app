@@ -25,6 +25,7 @@ if (!props.profile) {
         
 
     </div>
+    
     </div>)
 
    

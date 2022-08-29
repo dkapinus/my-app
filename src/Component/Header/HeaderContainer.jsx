@@ -9,7 +9,7 @@ import { logoutThunk } from '../../Redux/auth-reducer';
 class HeaderContainer extends React.Component  {
 
    
-    
+   
     
     
     render() {
